@@ -1,0 +1,35 @@
+{
+  "name": "pws-to-mqtt",
+  "version": "0.1.0",
+  "description": "PWS server that publishes updates to MQTT",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/server.ts",
+    "watch": "nodemon --watch src -e ts --exec npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vives-dust/weatherstation.git"
+  },
+  "keywords": [
+    "PWS",
+    "MQTT",
+    "Weather",
+    "Weatherstation"
+  ],
+  "author": "Sille Van Landschoot <info@sillevl.be>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vives-dust/weatherstation/issues"
+  },
+  "homepage": "https://github.com/vives-dust/weatherstation#readme",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "express": "^4.17.2",
+    "mqtt": "^4.3.4",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
+  }
+}
