@@ -48,7 +48,11 @@ interface PublishData {
 }
 
 
-const mqtt: MqttClient = MQTT.connect('mqtt://mqtt.littlewan.be')
+const mqtt: MqttClient = MQTT.connect(MQTT_HOST)
+
+mqtt.on("connect", () => {
+    console.log(`Connected to MQTT host: ${MQTT_HOST}`)
+})
 
 const app: Application = express()
 const server = http.createServer(app)
