@@ -50,6 +50,7 @@ interface PublishData {
 
 const mqtt: MqttClient = MQTT.connect(`mqtt://{MQTT_HOST}`)
 
+console.log(`Connecting MQTT to ${MQTT_HOST}`)
 mqtt.on("connect", () => {
     console.log(`Connected to MQTT host: ${MQTT_HOST}`)
 })
