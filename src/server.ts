@@ -74,11 +74,11 @@ app.get(WEATHERSTATION_UPDATE_PATH, (request: Request, response: Response, next:
     mqtt.publish(`${MQTT_TOPIC_PREFIX}/${stationId}`, JSON.stringify(publishData))
 
     for (let [key, value] of Object.entries(publishData	)) {
-        console.log(key, value)
         mqtt.publish(`${MQTT_TOPIC_PREFIX}/${stationId}/${key}`, `${value}`)
     }
 
     console.log(data)
+    response.status(200).end()
 })
 
 server.listen(PORT, () => {
