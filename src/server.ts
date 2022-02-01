@@ -15,22 +15,22 @@ interface WeatherData {
     ID: string,
     PASSWORD: string,
     action: string,
-    realtime: number,
-    rtfreq: number,
+    realtime: string,
+    rtfreq: string,
     dateutc: string,
-    baromin: number,
-    tempf: number,
-    dewptf: number,
-    humidity: number,
-    windspeedmph: number,
-    windgustmph: number,
-    winddir: number,
-    rainin: number,
-    dailyrainin: number,
-    solarradiation: number,
-    UV: number,
-    indoortempf: number,
-    indoorhumidity: number
+    baromin: string,
+    tempf: string,
+    dewptf: string,
+    humidity: string,
+    windspeedmph: string,
+    windgustmph: string,
+    winddir: string,
+    rainin: string,
+    dailyrainin: string,
+    solarradiation: string,
+    UV: string,
+    indoortempf: string,
+    indoorhumidity: string
 }
 
 interface PublishData {
@@ -64,17 +64,17 @@ app.get(WEATHERSTATION_UPDATE_PATH, (request: Request, response: Response, next:
     const stationId = data.ID
 
     const publishData: PublishData = {
-        barometer_hpa: mmhgToHpa(data.baromin),
-        temperature_c: fahrenheitToCelsius(data.tempf),
-        dewpoint_c: fahrenheitToCelsius(data.dewptf),
-        humidity_percent: data.humidity,
-        windspeed_kmh: mphTokmh(data.windspeedmph),
-        windgust_kmh: mphTokmh(data.windgustmph),
-        winddirection_degrees: data.winddir,
-        rain_mm: inchToMm(data.rainin),
-        dailyrain_mm: data.dailyrainin,
-        solarradiation_wm2: data.solarradiation,
-        uv_index: data.UV
+        barometer_hpa: mmhgToHpa(parseFloat(data.baromin)),
+        temperature_c: fahrenheitToCelsius(parseFloat(data.tempf)),
+        dewpoint_c: fahrenheitToCelsius(parseFloat(data.dewptf)),
+        humidity_percent: parseFloat(data.humidity),
+        windspeed_kmh: mphTokmh(parseFloat(data.windspeedmph)),
+        windgust_kmh: mphTokmh(parseFloat(data.windgustmph)),
+        winddirection_degrees: parseFloat(data.winddir),
+        rain_mm: inchToMm(parseFloat(data.rainin)),
+        dailyrain_mm: parseFloat(data.dailyrainin),
+        solarradiation_wm2: parseFloat(data.solarradiation),
+        uv_index: parseFloat(data.UV)
     }
     mqtt.publish(`${MQTT_TOPIC_PREFIX}/${stationId}`, JSON.stringify(publishData))
 
@@ -83,6 +83,7 @@ app.get(WEATHERSTATION_UPDATE_PATH, (request: Request, response: Response, next:
     }
 
     console.log(data)
+    console.log(publishData)
     response.status(200).end()
 })
 
