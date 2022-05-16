@@ -72,7 +72,7 @@ app.get(WEATHERSTATION_UPDATE_PATH, (request: Request, response: Response, next:
         windgust_kmh: mphTokmh(parseFloat(data.windgustmph)),
         winddirection_degrees: parseFloat(data.winddir),
         rain_mm: inchToMm(parseFloat(data.rainin)),
-        dailyrain_mm: parseFloat(data.dailyrainin),
+        dailyrain_mm: inchToMm(parseFloat(data.dailyrainin)),
         solarradiation_wm2: parseFloat(data.solarradiation),
         uv_index: parseFloat(data.UV)
     }
