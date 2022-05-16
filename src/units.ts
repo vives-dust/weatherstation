@@ -8,7 +8,7 @@ export function mphTokmh(speed: number) :number {
 }
 
 export function inchToMm(distance: number) :number {
-    return parseFloat((distance / 25.4).toFixed(2))
+    return parseFloat((distance * 25.4).toFixed(2))
 }
 
 export function mmhgToHpa(pressure: number) :number {
